@@ -1,0 +1,104 @@
+{% extends 'app/base.html' %}
+
+
+
+
+
+{%block js%}
+<script> 
+    function eliminarGuardia(id) {
+        console.log(id)
+        Swal.fire({
+            "title":"¿seguro?",
+            "text":"sera eliminado",
+            "icon":"warning",
+            "showCancelButton":true,
+            "cancelButtonText":"Cancelar",
+            "confirmButtonText":"Eliminar",
+            "confirmButtonColor":"#ac1726"
+        })
+        .then(function(result){
+            if(result.isConfirmed){
+                window.location.href = "/eliminar-guardia/"+id+"/"
+            }
+        })
+    }
+
+
+
+</script>
+
+{%endblock%}
+
+
+{% block contenido %}
+
+<br>
+<div class="card-body">
+    <div class="card-body">
+        <h2>Listado de guardias</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Rut</th>
+                <th>Activo</th>
+                <th>Empresa</th>
+                <th>foto</th>
+                <th>Opciones</th>
+                
+                
+            </tr>
+        
+        
+            {%for i in entity %}
+            <tr>
+                <td>{{i.nombre}}</td>
+                <td>{{i.apellido}}</td>
+                <td>{{i.rut}}</td>
+                
+                <td>
+                    {% if i.activo %}
+                    SI
+                    {%else%}
+                    NO
+                    {%endif%}
+                </td>
+                <td>{{i.empresas}}</td>
+                {% if i.foto %}
+                <td class="fotografia">
+                <img src="{{i.foto.url}}" class="fotografia" alt="Fotografia Guardia">
+                </td>
+                {% endif %}
+                
+                <td>
+                    
+                    <a href="{% url 'modificar_guardia' i.id %}" class="btn btn-primary btn-sm">Modificar</a>
+                    
+                    
+                    <a href="#" onclick="eliminarGuardia({{ i.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                    
+                </td>
+                
+                
+                
+            </tr>
+            {%endfor%}
+        </table>
+        <hr>
+        <div>
+            {%include 'app/guard/paginator.html'%}
+            
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+/* html{
+
+
+
+}
+
+body{
+
+
+}
+
+header{
+
+
+} */
+
+/*cont principal*/
+
+
+/*fin*/
+
+/*cont footer*/
+
+/*fin*/
+
+/*Media Queries*/
+
+
+
+
+/*Fin*/
+
+.home{
+    font-family: 10rem;
+    align-items: center;
+    align-content: center;
+
+}
+.fotografia {
+width: 200px;
+height: 250px;
+
+}
+.tituloforma {display: flex;
+    justify-content: center;
+
+}

@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+
+
+
+
+
+{%block js%}
+
+
+{%endblock%}
+
+
+{% block contenido %}
+
+<br>
+<div class="card-body">
+    <div class="card-body">
+        <h2>Listado de empresa</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Rut</th>
+                <th>Activo</th>
+                <th>Modificar</th>
+            </tr>
+        
+        
+            {%for i in entity %}
+            <tr>
+                <td>{{i.nombre}}</td>
+                <td>{{i.rut}}</td>
+                
+                <td>
+                    {% if i.activo %}
+                    SI
+                    {%else%}
+                    NO
+                    {%endif%}
+                </td>
+                
+                <td>
+                    
+                    <a href="{% url 'modificar_empresa' i.id %}" class="btn btn-info btn-sm">Modificar</a>
+                    
+                    
+                   
+                </td>
+                
+                
+                
+            </tr>
+            {%endfor%}
+        </table>
+        <hr>
+        <div>
+            {%include 'app/empresa/paginator_empresa.html'%}
+            
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
